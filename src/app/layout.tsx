@@ -1,5 +1,9 @@
 import '@/styles/tailwind.css'
 import type { Metadata } from 'next'
+import { Inter } from "next/dist/compiled/@next/font/dist/google";
+import { AuthProvider } from '@/components/auth/AuthProvider';
+import { AuthWrapper } from '@/components/auth/AuthWrapper';
+
 
 export const metadata: Metadata = {
     title: {
@@ -19,7 +23,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <link rel="preconnect" href="https://rsms.me/" />
             <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </head>
-        <body>{children}</body>
+        <body>
+        <AuthProvider>
+            <AuthWrapper>
+                {children}
+            </AuthWrapper>
+        </AuthProvider>
+        </body>
         </html>
     )
 }
